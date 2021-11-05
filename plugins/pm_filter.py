@@ -95,7 +95,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"📁{file.file_name}", callback_data=f'📁files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -104,14 +104,15 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"📁{file.file_name}", callback_data=f'📁files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-
-                    callback_data=f'files_#{file.file_id}',
+                    text=f"📁{get_size(file.file_size)}",
+                    callback_data=f'📁files_#{file.file_id}',
                 ),
             ]
             for file in files
+     
         ]
 
     if 0 < offset <= 10:
@@ -320,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [
                         InlineKeyboardButton(
-                            text=f"{title}{act}", callback_data=f"groupcb:{groupid}:{title}:{act}"
+                            text=f"📁{title}{act}", callback_data=f"groupcb:{groupid}:{title}:{act}"
                         )
                     ]
                 )
@@ -374,7 +375,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     file_id=file_id,
                     caption=f_caption
                     )
-                await query.answer('Cuba Check PM, Saya Dah Hantar Melalui PM',show_alert = True)
+                await query.answer('Video Dah Dihantar Melalui PM, Sila Check, Terima Kasih. Share @moviereqmyrplix',show_alert = True)
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
@@ -591,7 +592,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"📁[{get_size(file.file_size)}] {file.file_name}", callback_data=f'📁files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -600,12 +601,12 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}",
-                    callback_data=f'files#{file.file_id}',
+                    text=f"📁{file.file_name}",
+                    callback_data=f'📁files#{file.file_id}',
                 ),
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
+                    text=f"📁{get_size(file.file_size)}",
+                    callback_data=f'📁files_#{file.file_id}',
                 ),
             ]
             for file in files
@@ -655,7 +656,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url']
         )
     else:
-        cap = f"Okay, Gang Nah Video Korang Nak {search}"
+        cap = f"Nah Video Korang Nak! {search} Share @moviereqmyrplix"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
