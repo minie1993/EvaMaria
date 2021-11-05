@@ -95,7 +95,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}[{get_size(file.file_size)}]", callback_data=f'files#📁{file_id.file}'
+                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -359,7 +359,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 print(e)
             f_caption=f_caption
         if f_caption is None:
-            f_caption = f"{files.file_name}"
+            f_caption = f"📁{file_name}"
             
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -374,7 +374,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     file_id=file_id,
                     caption=f_caption
                     )
-                await query.answer('Check PM, I have sent files in pm',show_alert = True)
+                await query.answer('Cuba Check PM, Saya Dah Hantar Melalui PM',show_alert = True)
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
