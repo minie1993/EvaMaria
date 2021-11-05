@@ -359,7 +359,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 print(e)
             f_caption=f_caption
         if f_caption is None:
-            f_caption = f"📁{file_name}"
+            f_caption = f"📁{files.file_name}"
             
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -655,7 +655,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url']
         )
     else:
-        cap = f"Here is what i found for your query {search}"
+        cap = f"Okay, Gang Nah Video Korang Nak {search}"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
