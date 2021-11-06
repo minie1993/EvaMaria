@@ -680,7 +680,7 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply(" Movie@TV Series Anda Cari Tiada Di Database PM Admin @amirul_minie dan berikan tajuk Movie@TV Series')
+        k = await msg.reply("Movie@TV Series Anda Cari Tiada Di Database PM Admin @amirul_minie dan berikan tajuk Movie@TV Series")
 
         await asyncio.sleep(8)
         await k.delete()
