@@ -95,7 +95,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁{file.file_name}", callback_data=f'📁files#{file.file_id}'
+                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -104,11 +104,11 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁{file.file_name}", callback_data=f'📁files#{file.file_id}'
+                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-                    text=f"📁{get_size(file.file_size)}",
-                    callback_data=f'📁files_#{file.file_id}',
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [
                         InlineKeyboardButton(
-                            text=f"📁{title}{act}", callback_data=f"groupcb:{groupid}:{title}:{act}"
+                            text=f"{title}{act}", callback_data=f"groupcb:{groupid}:{title}:{act}"
                         )
                     ]
                 )
@@ -360,7 +360,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 print(e)
             f_caption=f_caption
         if f_caption is None:
-            f_caption = f"📁{files.file_name}"
+            f_caption = f"{files.file_name}"
             
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -592,7 +592,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁[{get_size(file.file_size)}] {file.file_name}", callback_data=f'📁files#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'📁files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -601,12 +601,12 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁{file.file_name}",
-                    callback_data=f'📁files#{file.file_id}',
+                    text=f"{file.file_name}",
+                    callback_data=f'files#{file.file_id}',
                 ),
                 InlineKeyboardButton(
-                    text=f"📁{get_size(file.file_size)}",
-                    callback_data=f'📁files_#{file.file_id}',
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
@@ -656,7 +656,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url']
         )
     else:
-        cap = f"Nah Video Korang Nak! {search} Share @moviereqmyrplix"
+        cap = f"Ingin Bagi Sumbangan ke admin https://bit.ly/3mQ0MBk : Nah Video Korang Nak! Jangan Lupa Share @moviereqmyrplix yer! Tajuk Yang Dicari : {search}"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
