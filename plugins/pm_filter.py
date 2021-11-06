@@ -154,13 +154,13 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         return await query.message.delete()
     movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
+    await query.answer('Tunggu Saya Sedang Mencari Movie@TV Series Di Database...')
     files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
     if files:
         k = (movie, files, offset, total_results)
         await auto_filter(bot, query, k)
     else:
-        k = await query.message.edit('This Movie Not Found In DataBase')
+        k = await query.message.edit('Movie@TV Series Anda Cari Tiada Di Database PM Admin @amirul_minie dan berikan tajuk Movie@TV Series')
         await asyncio.sleep(10)
         await k.delete()
 
@@ -680,7 +680,8 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply(" Movie@TV Series Anda Cari Tiada Di Database PM Admin @amirul_minie dan berikan tajuk Movie@TV Series')
+
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -706,7 +707,7 @@ async def advantage_spell_chok(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
     if not movielist:
-        k = await msg.reply("Saya tak dapat cari tajuk anda berikan, lihat typo dan sila cuba lagi")
+        k = await msg.reply("Saya tak dapat cari tajuk Movie@TV Series anda, lihat typo dan sila cuba lagi")
         await asyncio.sleep(8)
         await k.delete()
         return
