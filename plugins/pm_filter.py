@@ -154,14 +154,14 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         return await query.message.delete()
     movie = movies[(int(movie_))]
-    await query.answer('Tunggu Saya Sedang Mencari Movie@TV Series Di Database...')
+    await query.answer('Tunggu! Sedang Mencari Di Database...')
     files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
     if files:
         k = (movie, files, offset, total_results)
         await auto_filter(bot, query, k)
     else:
-        k = await query.message.edit('Movie@TV Series Anda Cari Tiada Di Database PM Admin @amirul_minie dan berikan tajuk Movie@TV Series')
-        await asyncio.sleep(10)
+        k = await query.message.edit('Tajuk Movie@TV Series Anda Cari, Tiada Di Database, Sila PM Admin @amirul_minie')
+        await asyncio.sleep(20)
         await k.delete()
 
 
@@ -375,7 +375,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     file_id=file_id,
                     caption=f_caption
                     )
-                await query.answer('Video Dah Dihantar Melalui PM, Sila Check, Terima Kasih. Share @moviereqmyrplix',show_alert = True)
+                await query.answer('Video Dah Dihantar Melalui PM, Sila Check, Terima Kasih.',show_alert = True)
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
