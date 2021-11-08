@@ -98,7 +98,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -115,7 +115,6 @@ async def next_page(bot, query):
                 ),
             ]
             for file in files
-     
         ]
 
     if 0 < offset <= 10:
@@ -157,14 +156,14 @@ async def advantage_spoll_choker(bot, query):
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
-    await query.answer('Tunggu! Sedang Mencari Di Database...')
+    await query.answer('Checking for Movie in database...')
     files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
     if files:
         k = (movie, files, offset, total_results)
         await auto_filter(bot, query, k)
     else:
-        k = await query.message.edit('Tajuk Movie@TV Series Anda Cari, Tiada Di Database, Sila PM Admin @amirul_minie')
-        await asyncio.sleep(20)
+        k = await query.message.edit('This Movie Not Found In DataBase')
+        await asyncio.sleep(10)
         await k.delete()
 
 
@@ -378,7 +377,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     file_id=file_id,
                     caption=f_caption
                     )
-                await query.answer('Video Dah Dihantar Melalui PM, Sila Check, Terima Kasih.',show_alert = True)
+                await query.answer('Check PM, I have sent files in pm',show_alert = True)
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
@@ -595,7 +594,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'📁files#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -659,7 +658,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url']
         )
     else:
-        cap = f"Ingin Bagi Sumbangan ke admin https://bit.ly/3mQ0MBk : Nah Video Korang Nak! Jangan Lupa Share @moviereqmyrplix yer! Tajuk Yang Dicari : {search}"
+        cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
@@ -683,8 +682,7 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("Movie@TV Series Anda Cari Tiada Di Database PM Admin @amirul_minie dan berikan tajuk Movie@TV Series")
-
+        k = await msg.reply("I couldn't find any movie in that name.")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -710,7 +708,7 @@ async def advantage_spell_chok(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
     if not movielist:
-        k = await msg.reply("Saya tak dapat cari tajuk Movie@TV Series anda, lihat typo dan sila cuba lagi")
+        k = await msg.reply("I couldn't find anything related to that. Check your spelling")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -722,7 +720,4 @@ async def advantage_spell_chok(msg):
                 )
             ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply("Maaf saya tidak jumpa tajuk yang di cari \nCuba lihat senarai tajuk dibawah", reply_markup=InlineKeyboardMarkup(btn))
-    
-
-
+    await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?", reply_markup=InlineKeyboardMarkup(btn))
