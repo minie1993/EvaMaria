@@ -98,7 +98,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🗂[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"🗂[{get_size(file.file_size)}]🎬{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -658,7 +658,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url']
         )
     else:
-        cap = f"💰Untuk Support Group Myrplix : https://toyyibpay.com/myrplix-support\nInilah yang saya temui untuk carian anda {search}"
+        cap = f"💰Untuk Support Group Myrplix :\nhttps://bit.ly/3mQ0MBk\nInilah yang saya temui untuk carian anda : {search}"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
