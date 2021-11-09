@@ -98,7 +98,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🎬{file.file_name}[{get_size(file.file_size)}]", callback_data=f'files#{file.file_id}'
+                    text=f"🎬 {file.file_name} [{get_size(file.file_size)}]", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -377,7 +377,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     file_id=file_id,
                     caption=f_caption
                     )
-                await query.answer('✅ Saya Dah Hantar Movie/Tv Series, Sila Check Di PM, Terima Kasih ',show_alert = True)
+                await query.answer('✅ Saya Dah Hantar Movie/Tv Series Anda Di PM, Sila Check, Terima Kasih. 🤝',show_alert = True)
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
@@ -594,7 +594,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🎬{file.file_name}[{get_size(file.file_size)}]", callback_data=f'files#{file.file_id}'
+                    text=f"🎬 {file.file_name} [{get_size(file.file_size)}]", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
