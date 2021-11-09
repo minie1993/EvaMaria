@@ -658,7 +658,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url']
         )
     else:
-        cap = f"Here is what i found for your query {search}"
+        cap = f"Untuk Support Group Myrplix : https://toyyibpay.com/myrplix-support | Inilah yang saya temui untuk carian anda {search}"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
